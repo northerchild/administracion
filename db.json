@@ -23,6 +23,18 @@
       "precioPlatillo": "100",
       "categoria": "ensalada",
       "id": 7
+    },
+    {
+      "nombrePlatillo": "Cerveza artesanal",
+      "precioPlatillo": "55",
+      "categoria": "bebida",
+      "id": 8
+    },
+    {
+      "nombrePlatillo": "Carne encebollada",
+      "precioPlatillo": "1200",
+      "categoria": "cortes",
+      "id": 9
     }
   ]
 }
