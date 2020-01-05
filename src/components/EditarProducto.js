@@ -1,7 +1,10 @@
 import React, {useState, useRef} from 'react';
 import Error from './Error';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import {  withRouter } from 'react-router-dom';
 
-function EditarProducto({producto}){
+function EditarProducto({history,producto}){
     //Generar los refs
     const precioPlatilloRef = useRef('');
     const nombrePlatilloRef = useRef('');
@@ -10,8 +13,49 @@ function EditarProducto({producto}){
     const leerValorRadio = e=>{
         guardarCategoria(e.target.value);
     }
-    const editarProducto = e =>{
-        
+    const editarProducto = async e =>{
+        e.preventDefault();
+        // validacion
+        const nuevoNombrePlatillo = nombrePlatilloRef.current.value,
+              nuevoPrecioPlatillo = precioPlatilloRef.current.value;
+
+        if(nuevoNombrePlatillo === '' || nuevoPrecioPlatillo === '' ) {
+            guardarError(true);
+            return;
+        }
+
+        guardarError(false);
+        //Revisar si se hizo cambios en el check, si no dejar el mismo
+        let categoriaPlatillo = (categoria === '') ? producto.categoria : categoria;
+        console.log(categoriaPlatillo);
+        //Obtener los valores
+        const editarPlatillo = {
+            precioPlatillo : precioPlatilloRef.current.value,
+            nombrePlatillo : nombrePlatilloRef.current.value,
+            categoria : categoriaPlatillo
+        }
+        //Enviar Request
+        const url = `http://localhost:4000/restaurant/${producto.id}`
+        try{
+            const resultado = await axios.put(url, editarPlatillo);
+            if (resultado.status === 200) {
+                Swal.fire(
+                    'Producto Editado',
+                    'El producto se editó correctamente',
+                    'success'
+                )
+            }
+        }
+        catch (error) {
+            console.log(error);
+            Swal.fire({
+                type: 'error',
+                tittle: 'Error',
+                text: 'Hubo un error, vuelve a intentarlo'
+            })
+        }
+        //Redirigir al usuario a productos
+        history.push('/productos')
     }
     return(
         <div className="col-md-8 mx-auto ">
@@ -110,4 +154,4 @@ function EditarProducto({producto}){
         </div>
     )
 }
-export default EditarProducto;
+export default withRouter(EditarProducto);

@@ -1,7 +1,7 @@
 {
   "restaurant": [
     {
-      "precioPlatillo": "120",
+      "precioPlatillo": "115",
       "nombrePlatillo": "Ensalada Primavera",
       "categoria": "ensalada",
       "id": 3
@@ -41,6 +41,12 @@
       "precioPlatillo": "70",
       "categoria": "postre",
       "id": 10
+    },
+    {
+      "precioPlatillo": "110",
+      "nombrePlatillo": "Ensalada Dulce",
+      "categoria": "ensalada",
+      "id": 11
     }
   ]
 }
