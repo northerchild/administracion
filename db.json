@@ -31,12 +31,6 @@
       "id": 8
     },
     {
-      "nombrePlatillo": "Carne encebollada",
-      "precioPlatillo": "1200",
-      "categoria": "cortes",
-      "id": 9
-    },
-    {
       "nombrePlatillo": "Pastel de maracuya",
       "precioPlatillo": "70",
       "categoria": "postre",
